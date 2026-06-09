@@ -1,4 +1,5 @@
 // Thin wrapper over the backend. Every call returns parsed JSON or throws
+const BACKEND_URL = "https://litmus-backend-8az9.onrender.com";
 // with the server's error detail so the UI can show something specific.
 async function call(path, options = {}) {
   const res = await fetch(path, {
