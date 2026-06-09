@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend
+    container_name: litmus-backend
+    ports:
+      - "8000:8000"
+    # Optional: let the backend reach a local Ollama on the host for the LLM
+    # engine. Uncomment if you run Ollama. The app works fully without it.
+    # environment:
+    #   - OLLAMA_URL=http://host.docker.internal:11434
+    #   - OLLAMA_MODEL=qwen2.5-coder:1.5b
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+
+  frontend:
+    build: ./frontend
+    container_name: litmus-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
